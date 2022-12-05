@@ -26,7 +26,7 @@ ws.onmessage = function (event) {
     }
     
     let price = data[0]['bp'].toFixed(2);
-    // price.style.color = 'red';
-    priceElement.innerHTML = `ETH/USD current price: ${price}`;
-
+    priceElement.innerHTML = price;
+    priceElement.style.color = !lastPrice || lastPrice === price ? 'black' : price > lastPrice ? 'green' : 'red';
+    lastPrice = price;
 };
