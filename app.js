@@ -26,8 +26,6 @@ ws.onmessage = function (event) {
         console.log('successful authentication');
         ws.send(JSON.stringify(subscribe));
     }
-    
-    console.log(data[0]['S']);
 
     let symbol = data[0]['S'];
 
