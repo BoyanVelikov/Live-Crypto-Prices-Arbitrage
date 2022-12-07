@@ -1,2 +1,2 @@
-# LiveCryptoPrice
-Simple APP showing live ETH/USD price
+# LiveCryptoPrices & Arbitrage
+Simple APP showing live BTC/USD, ETH/USD, ETH/BTC prices + if there is an arbitrage opportunity
