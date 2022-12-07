@@ -4,11 +4,15 @@ const priceElementETH = document.getElementById('eth-price');
 let lastPriceETH = null;
 const priceElementBTC = document.getElementById('btc-price');
 let lastPriceBTC = null;
+const priceElementETHBTC = document.getElementById('eth-btc-price');
+let lastPriceETHBTC = null;
+const arbitrage = document.getElementById('arbitrage');
+
 
 const API_KEY = 'PKN2WI61H3VGTPQ4IT5O';
 const SECRET_KEY = 'qtjXhccl4DUN6pibe77swyc1TsFY7phW0DTg5f8k';
 const auth = {"action": "auth", "key": API_KEY, "secret": SECRET_KEY};
-const subscribe = {"action":"subscribe","trades":["ETH/USD", "BTC/USD"],"quotes":["ETH/USD", "BTC/USD"],"bars":["ETH/USD", "BTC/USD"]};
+const subscribe = {"action":"subscribe","trades":["ETH/USD", "BTC/USD", "ETH/BTC"],"quotes":["ETH/USD", "BTC/USD", "ETH/BTC"],"bars":["ETH/USD", "BTC/USD", "ETH/BTC"]};
 
 
 ws.onmessage = function (event) {
@@ -39,9 +43,26 @@ ws.onmessage = function (event) {
         priceElementBTC.innerHTML = priceBTC;
         priceElementBTC.style.color = !lastPriceBTC || lastPriceBTC === priceBTC ? 'black' : priceBTC > lastPriceBTC ? 'green' : 'red';
         lastPriceBTC = priceBTC;
+    } else if (symbol === 'ETH/BTC') {
+        let priceETHBTC = data[0]['bp'].toFixed(6);
+        priceElementETHBTC.innerHTML = priceETHBTC;
+        priceElementETHBTC.style.color = !lastPriceETHBTC || lastPriceETHBTC === priceETHBTC ? 'black' : priceETHBTC > lastPriceETHBTC ? 'green' : 'red';
+        lastPriceETHBTC = priceETHBTC;
+
+        console.log(lastPriceETH/lastPriceBTC);
+        console.log(lastPriceETHBTC);
+
+        if (lastPriceETH/lastPriceBTC < lastPriceETHBTC) {
+            arbitrage.innerHTML = 'YES';
+            arbitrage.style.color = 'green';
+        } else {
+            arbitrage.innerHTML = 'NO';
+            arbitrage.style.color = 'red';
+        }
     }
     
+    // arbitrage.innerHTML = 'No Data';
 
     
-
+    
 };
