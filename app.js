@@ -9,8 +9,8 @@ let lastPriceETHBTC = null;
 const arbitrage = document.getElementById('arbitrage');
 
 
-const API_KEY = 'PKN2WI61H3VGTPQ4IT5O';
-const SECRET_KEY = 'qtjXhccl4DUN6pibe77swyc1TsFY7phW0DTg5f8k';
+const API_KEY = 'PKI4ECQ9XNFWJQX4RQYN';
+const SECRET_KEY = '4t0FL6QtFQIQknAzwxfujAhdGH6UMISjS59cyIGe';
 const auth = {"action": "auth", "key": API_KEY, "secret": SECRET_KEY};
 const subscribe = {"action":"subscribe","trades":["ETH/USD", "BTC/USD", "ETH/BTC"],"quotes":["ETH/USD", "BTC/USD", "ETH/BTC"],"bars":["ETH/USD", "BTC/USD", "ETH/BTC"]};
 
